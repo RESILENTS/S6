@@ -18,5 +18,4 @@ def admin_keyboard():
     btn2 = types.KeyboardButton(text='Кол-во пользователей')
     btn3 = types.KeyboardButton(text='Все пользователей')
     markup.add(btn, btn1)
-    markup.add(btn3, btn2)
     return markup
