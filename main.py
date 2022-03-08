@@ -32,7 +32,10 @@ def text(message):
     chat_id = message.from_user.id
     if message.text == 'Да':
         channel_id = -1001450252060
-                bot.send_message(channel_id, parse_mode='Markdown', now.strftime("📢 *Добавлен новый слив:*\n🕔 *Время слива:* %d-%m-%Y %H:%M \n🌐 *Ресурс:* slivup.cc\n🔗 *URL запроса:*"))
+                bot.send_message(channel_id, parse_mode='Markdown', now.strftime(f'''📢 *Добавлен новый слив:*
+🕔 *Время слива:* [%d-%m-%Y %H:%M]
+🌐 *Ресурс:* slivup.cc
+🔗 *URL запроса:*'''))
 
     if message.text == '📊 Статистика':
         with sqlite3.connect('users.db') as conn:
