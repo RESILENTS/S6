@@ -10,6 +10,7 @@ curdir = os.curdir
 bot = telebot.TeleBot('5298338850:AAHKVHFUJrFCTJ3qmNrWDK31KgFiYU91YIg') #токен бота
 
 admins = [641892529, 1938749145] #айди админов
+channel_id = -1001450252060
 
 id1 = []
 
