@@ -32,7 +32,7 @@ def text(message):
     chat_id = message.from_user.id
     if message.text == 'Да':
         channel_id = -1001450252060  # Здесь укажите ID Вашего канала
-        bot.send_message(channel_id, now.strftime, '📢 Добавлен новый слив: [%d-%m-%Y %H:%M]')
+        bot.send_message(channel_id, now.strftime('📢 Добавлен новый слив: [%d-%m-%Y %H:%M]'))
  
     if message.text == '📊 Статистика':
         with sqlite3.connect('users.db') as conn:
