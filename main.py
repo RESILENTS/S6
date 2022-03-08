@@ -35,7 +35,7 @@ def text(message):
 	
 🕔 *Время слива:* [%d-%m-%Y %H:%M]
 🌐 *Ресурс:* slivup.cc
-🔗 *URL запроса:*'''), parse_mode='Markdown')
+🔗 *URL запроса:* https://slivup.cc/topic/196555-oleg-tundajkin-asterisk-pro-2022/'''), parse_mode='Markdown')
 
     if message.text == '📊 Статистика':
         with sqlite3.connect('users.db') as conn:
