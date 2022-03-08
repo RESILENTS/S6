@@ -174,16 +174,16 @@ def podcategors(call):
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='✅ Успешно!')
-
-        link_id = {m1}
-        link_coment = {m3}
-        link_text = {m2}
-        db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
         bot.send_message(channel_id, now.strftime(f'''📢 *SORGENY:* Опубликован новый слив.
 
 🕔 *Время слива:* [%d-%m-%Y %H:%M]
 🌐 *Продажник:* {m3}
 🔗 *URL запроса:* {m1}'''), parse_mode='Markdown')
+
+        link_id = {m1}
+        link_coment = {m3}
+        link_text = {m2}
+        db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
     if call.data == 'new_link':
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
