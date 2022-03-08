@@ -31,8 +31,7 @@ def admin(message):
 def text(message):
     chat_id = message.from_user.id
     if message.text == 'Да':
-        channel_id = -1001450252060
-                bot.send_message(channel_id, now.strftime(f'''📢 *Добавлен новый слив:*
+        bot.send_message(channel_id, now.strftime(f'''📢 *Добавлен новый слив:*
 🕔 *Время слива:* [%d-%m-%Y %H:%M]
 🌐 *Ресурс:* slivup.cc
 🔗 *URL запроса:*'''), parse_mode='Markdown')
