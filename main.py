@@ -1,12 +1,9 @@
 from  config import *
 from  keyboard import *
-import datetime
-
-now = datetime.datetime.now()
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    chat_id = message.chat.id
+    chat_id = message.from_user.id
     username = message.from_user.username
     with sqlite3.connect('users.db') as conn:
         cur = conn.cursor()
@@ -16,7 +13,7 @@ def start(message):
         if len(row) == 0:
             cur.execute("INSERT INTO `user` (`username`, `user_id`) VALUES(?,?)",
                         (username, chat_id,))
-    text = '👋 Приветствую, <b>'+message.from_user.first_name +'</b> — Я помогу тебе получить бесплатно схемы заработка, курсы по бизнесу, мануалы, инфопродукты и другую полезную информацию с разных форумах. \n\nУ меня есть база данных слитых хайдов с разных интернет площадок.\n\n🏠 <b>Наш канал:</b> @sorgeny\n💭 <b>Наш чат:</b> @sorgeny_chat\n👥 <b>Поддержка:</b> @sorgeny_support'
+    text = '<b>SORGENY</b> — Я помогу тебе получить бесплатно курсы, мануалы, инфопродукты с разных форумах. \n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация.'
     img = open ('welc.webp', 'rb')
     bot.send_photo(chat_id, img, caption=text, reply_markup=main_keyboard(), parse_mode='html')
 
@@ -24,13 +21,12 @@ def start(message):
 def admin(message):
     chat_id = message.from_user.id
     if chat_id in admins:
-        bot.send_message(chat_id, '🛠️ Добро пожаловать в Админ панель', reply_markup=admin_keyboard())
+        bot.send_message(chat_id, '🛠️ Добро пожаловать в Админ панель.', reply_markup=admin_keyboard())
 
 
 @bot.message_handler(content_types=['text'])
 def text(message):
     chat_id = message.from_user.id
-
     if message.text == '📊 Статистика':
         with sqlite3.connect('users.db') as conn:
             cur = conn.cursor()
@@ -41,7 +37,6 @@ def text(message):
             cursor.execute("select count(*) from links") 
             result2 = cursor.fetchone()[0]
             bot.send_message(message.chat.id, f'''📊  <b>Статистика бота SORGENY:</b>
-
  —  <b>Сливов в базе данных:</b> {result2}
  —  <b>Количество пользователей:</b> ''' + str(len(row)), parse_mode='HTML')
 
@@ -53,7 +48,6 @@ def text(message):
         result2 = cursor.fetchone()[0]
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
-
 ⚠️  <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
         
 🟢  <b>Актуальные домены:</b>
@@ -111,23 +105,19 @@ def getlinkm(message):
             btn1 = types.InlineKeyboardButton(text="❌ Удалить запрос", callback_data="get_close")
             keyboard.add(btn1)
             bot.send_message(message.chat.id, f'''🔍  <b>Результат по вашему запросу:</b>
-
 🔗  <b>Ссылка вашего запроса: </b>
  — {link_id}
  
 💭  <b>Продажник:</b>
 {link_text}
-
 🔐  <b>Скрытое содержимое: </b>
 {link_coment}
-
 ''',reply_markup=keyboard, parse_mode='HTML')
 
 def search1(message):
         global link_id
         link_id = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
-
 ⚠️  <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
         
 🟢  <b>Актуальные домены:</b>
@@ -152,10 +142,8 @@ def add3(message):
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(types.InlineKeyboardButton(text='✅ Опубликовать пост',callback_data=f'принятьзаявку_{message.chat.id}'))
         bot.send_message(message.chat.id, f'''Предпросмотр публикации:
-
 ◾ Ссылка: {m1}
 ◾ Содержимое скрытого текста: {m3}
-
 ◾ Коментарии к публикации:
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
 
@@ -174,11 +162,6 @@ def podcategors(call):
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='✅ Успешно!')
-        bot.send_message(channel_id, now.strftime(f'''📢 *SORGENY:* Опубликован новый слив.
-
-🕔 *Время слива:* [%d-%m-%Y %H:%M]
-🌐 *Продажник:* {m3}
-🔗 *URL запроса:* {m1}'''), parse_mode='Markdown')
 
         link_id = {m1}
         link_coment = {m3}
