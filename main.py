@@ -24,7 +24,7 @@ def start(message):
 def admin(message):
     chat_id = message.from_user.id
     if chat_id in admins:
-        bot.send_message(chat_id, '🛠️ Добро пожаловать в Админ панель.', reply_markup=admin_keyboard())
+        bot.send_message(chat_id, '🛠️ Добро пожаловать в Админ панель', reply_markup=admin_keyboard())
 
 
 @bot.message_handler(content_types=['text'])
