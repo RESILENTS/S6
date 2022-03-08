@@ -1,5 +1,8 @@
 from  config import *
 from  keyboard import *
+import datetime
+
+now = datetime.datetime.now()
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -22,17 +25,15 @@ def admin(message):
     chat_id = message.from_user.id
     if chat_id in admins:
         bot.send_message(chat_id, '🛠️ Добро пожаловать в Админ панель.', reply_markup=admin_keyboard())
-        bot.send_message(1001276861998, 'hello world')
 
 
 @bot.message_handler(content_types=['text'])
 def text(message):
     chat_id = message.from_user.id
-
-    aswers = '666'
     if message.text == 'Да':
         channel_id = -1001450252060  # Здесь укажите ID Вашего канала
-        bot.send_message(channel_id, str(aswers))
+        bot.send_message(channel_id, now.strftime, '📢 Добавлен новый слив: [%d-%m-%Y %H:%M]')
+ 
     if message.text == '📊 Статистика':
         with sqlite3.connect('users.db') as conn:
             cur = conn.cursor()
