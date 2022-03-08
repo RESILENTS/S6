@@ -2,9 +2,6 @@ import telebot, sqlite3, random, string, csv, os
 from SimpleQIWI import *
 from telebot import types
 
-username = message.from_user.username
-username = username.replace('_', '\\_')
-
 conn = sqlite3.connect('users.db', check_same_thread=False)
 cursor = conn.cursor()
 
