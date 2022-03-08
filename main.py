@@ -29,14 +29,7 @@ def admin(message):
 def text(message):
     chat_id = message.from_user.id
 
-    aswers = 'Имя: ' + name + '\n'
-           + 'Номер: ' + str(nomer) + '\n'
-           + 'Город: ' + country + '\n'
-           + 'Предмет: ' + subject + '\n'
-           + 'Класс: ' + str(clas) + '\n '
-           + 'Формат обучения: ' + formats +'\n'
-           + 'Обучение: ' + individ + '\n'
-           + 'День записи: ' + day
+    aswers = '666'
     if message.text == 'Да':
         channel_id = -1001450252060  # Здесь укажите ID Вашего канала
         bot.send_message(channel_id, str(aswers))
