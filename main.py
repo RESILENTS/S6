@@ -180,7 +180,7 @@ def podcategors(call):
         link_text = {m2}
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 	bot.send_message(channel_id, now.strftime(f'''📢 *SORGENY:* Опубликован новый слив.
-	
+
 🕔 *Время слива:* [%d-%m-%Y %H:%M]
 🌐 *Продажник:* {m3}
 🔗 *URL запроса:* {m1}'''), parse_mode='Markdown')
